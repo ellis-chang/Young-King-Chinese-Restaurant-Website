@@ -4,7 +4,8 @@ import axios from 'axios';
 
 const ContactForm = () => {
   const [state, setState] = useState({
-    name: '',
+    first_name: '',
+    last_name: '',
     email: '',
     subject: '',
     message: '',
@@ -26,7 +27,8 @@ const ContactForm = () => {
       .then((response) => {
         setResult(response.data);
         setState({
-          name: '',
+          first_name: '',
+          last_name: '',
           email: '',
           subject: '',
           message: ''
@@ -49,36 +51,89 @@ const ContactForm = () => {
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>Contact Us</h1>
       {result && (
         <p className={`${result.success ? 'success' : 'error'}`}>
           {result.message}
         </p>
       )}
-      <div className="">
-        <form onSubmit={sendEmail} className="w-full max-w-sm">
-          <div className="">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Full Name</label>
-            <input name="name" type="text" value={state.name} onChange={onInputChange} className="block w-full p-2 border border-gray-300 rounded" placeholder="Name" />
+      <div className="max-w-screen-lg mx-auto p-5">
+        <form onSubmit={sendEmail} className="md:col-span-8 p-10">
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">First Name</label>
+              <input 
+                id="grid-first-name" 
+                name="first_name" 
+                type="text" 
+                value={state.first_name} 
+                onChange={onInputChange} 
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                placeholder="First Name" />
+            </div>
+            <div className="w-full md:w-1/2 px-3">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">Last Name</label>
+              <input 
+                id="grid-last-name" 
+                name="last_name" 
+                type="text" 
+                value={state.last_name} 
+                onChange={onInputChange} 
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                placeholder="Last Name" />
+            </div>
           </div>
-          <div className="">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Email</label>
-            <input name="email" type="email" value={state.email} onChange={onInputChange} className="block w-full p-2 border border-gray-300 rounded" placeholder="Email" />
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-email">Email Address</label>
+              <input 
+                id="grid-email" 
+                name="email" 
+                type="email" 
+                value={state.email} 
+                onChange={onInputChange} 
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                placeholder="Email" />
+            </div>
           </div>
-          <div className="">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Subject</label>
-            <input name="subject" type="text" value={state.subject} onChange={onInputChange} className="block w-full p-2 border border-gray-300 rounded" placeholder="Subject" />
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-subject">Subject</label>
+              <input 
+                id="grid-subject" 
+                name="subject" 
+                type="text" 
+                value={state.subject} 
+                onChange={onInputChange} 
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                placeholder="Subject" />
+            </div>
           </div>
-          <div className="">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Message</label>
-            <textarea name="message" value={state.message} onChange={onInputChange} className="block w-full p-2 border border-gray-300 rounded" placeholder="Message" />
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-message">Message</label>
+              <textarea 
+                id="grid-message" 
+                name="message" 
+                value={state.message} 
+                onChange={onInputChange}
+                rows={5} 
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                placeholder="Message" />
+            </div>
           </div>
-          <div className="">
-            <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Send</button>
+          <div className="flex justify-between w-full px-3">
+            <div className="md:flex md:items-center">
+              <button 
+                type="submit" 
+                className="shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded">
+                  Send
+              </button>
+            </div>
           </div>
-        </form>   
-      </div>     
+        </form> 
+      </div>
     </div>
   );
 };

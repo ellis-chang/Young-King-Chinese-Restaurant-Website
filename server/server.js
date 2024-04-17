@@ -20,11 +20,13 @@ app.post('/send', (req, res) => {
       from: req.body.email, // sender address
       to: process.env.email, // list of receivers
       subject: req.body.subject, // Subject line
+      replyTo: req.body.email, // puts their email in the reply to field
       html: `
       <p>You have a new contact request.</p>
       <h3>Contact Details</h3>
       <ul>
-        <li>Name: ${req.body.name}</li>
+        <li>First  Name: ${req.body.first_name}</li>
+        <li>Last  Name: ${req.body.last_name}</li>
         <li>Email: ${req.body.email}</li>
         <li>Subject: ${req.body.subject}</li>
         <li>Message: ${req.body.message}</li>
